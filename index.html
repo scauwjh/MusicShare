@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Music Share</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- <link rel="stylesheet" href="jPlayer/lib/circle-player/skin/circle.player.css"> -->
+    <script type="text/javascript" src="jPlayer/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="jPlayer/dist/jplayer/jquery.jplayer.min.js"></script>
+    <script type="text/javascript" src="jPlayer/lib/circle-player/js/jquery.transform2d.js"></script>
+    <script type="text/javascript" src="jPlayer/lib/circle-player/js/jquery.grab.js"></script>
+    <script type="text/javascript" src="jPlayer/lib/circle-player/js/mod.csstransforms.min.js"></script>
+    <script type="text/javascript" src="jPlayer/lib/circle-player/js/circle.player.js"></script>
+
+    <!-- Include the compiled Ratchet CSS -->
+    <link href="ratchet/dist/css/ratchet.css" rel="stylesheet">
+    <!-- Include the compiled Ratchet JS -->
+    <script src="ratchet/dist/js/ratchet.js"></script>
+
+    <!-- user include -->
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/functions.js"></script>
+
+    <!-- music player message and page draw -->
+    <script type="text/javascript">
+        //<![CDATA[
+        $(document).ready(function(){
+            fullScreenShade();
+
+            var map = getParameters();
+            var music = "media/music/" + map.get("music");
+            var cover = "url('img/" + map.get("cover") + "')";
+
+            var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1",
+            {
+                m4a: music
+            }, {
+                cssSelectorAncestor: "#cp_container_1",
+                swfPath: "jplayer/dist/jplayer",
+                wmode: "window",
+                keyEnabled: true
+            });
+
+            $("#download-btn").attr("href", music);
+            $("#music-cover").css("background-image", cover);
+            $("#background").css("background-image", cover);
+        });
+        //]]>
+    </script>
+
+</head>
+<body>
+<center>
+<div id="background"></div>
+
+<div class="container">
+
+    <div id="music-cover">
+    </div>
+
+    <div id="player-ctrl">
+        <div id="jquery_jplayer_1" class="cp-jplayer"></div>
+        <div id="cp_container_1" class="cp-container">
+            <div class="cp-circle-control"></div>
+            <div class="cp-ctrl">
+                <a class="cp-play icon icon-play cp-ctrl"></a>
+                <a class="cp-pause icon icon-pause cp-ctrl"></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="download">
+        <a href="javascript:;" id="download-btn" target="view_window"><button class="btn btn-primary">下载这首歌</button></a>
+    </div>
+</div>
+</center>
+
+</body>
+
+</html>
+
